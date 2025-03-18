@@ -8,7 +8,7 @@ export class Particle {
     public m: number;
     public forces: Force[] = [];
     public elasticity: number;
-    public color:string;
+    public color: string;
 
     public constructor(
         s = new Vector(),
@@ -40,20 +40,20 @@ export class Particle {
         yMin: number,
         yMax: number
     ) {
-        if (this.s.x - this.m/2 < xMin) {
-            this.s.x = xMin + this.m/2;
+        if (this.s.x - this.m / 2 < xMin) {
+            this.s.x = xMin + this.m / 2;
             this.v.x *= -this.elasticity;
         }
-        if (this.s.x + this.m/2 > xMax) {
-            this.s.x = xMax - this.m/2;
+        if (this.s.x + this.m / 2 > xMax) {
+            this.s.x = xMax - this.m / 2;
             this.v.x *= -this.elasticity;
         }
-        if (this.s.y - this.m/2 < yMin) {
-            this.s.y = yMin + this.m/2;
+        if (this.s.y - this.m / 2 < yMin) {
+            this.s.y = yMin + this.m / 2;
             this.v.y *= -this.elasticity;
         }
-        if (this.s.y + this.m/2 > yMax) {
-            this.s.y = yMax - this.m/2;
+        if (this.s.y + this.m / 2 > yMax) {
+            this.s.y = yMax - this.m / 2;
             this.v.y *= -this.elasticity;
         }
     }
@@ -69,18 +69,19 @@ export class Particle {
         const dy = this.s.y - p.s.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         if (distance < (this.m + p.m) / 2) {
-            
             const overlap = (this.m + p.m) / 2 - distance;
             const nx = dx / distance;
             const ny = dy / distance;
 
-            this.s.x += nx * overlap / 2;
-            this.s.y += ny * overlap / 2;
-            p.s.x -= nx * overlap / 2;
-            p.s.y -= ny * overlap / 2;
+            this.s.x += (nx * overlap) / 2;
+            this.s.y += (ny * overlap) / 2;
+            p.s.x -= (nx * overlap) / 2;
+            p.s.y -= (ny * overlap) / 2;
 
-            
-            const relativeVelocity = new Vector(this.v.x - p.v.x, this.v.y - p.v.y);
+            const relativeVelocity = new Vector(
+                this.v.x - p.v.x,
+                this.v.y - p.v.y
+            );
             const dotProduct = relativeVelocity.dot(new Vector(nx, ny));
             if (dotProduct > 0) return;
 
@@ -102,7 +103,7 @@ export class Particle {
     public draw(ctx: CanvasRenderingContext2D) {
         ctx.fillStyle = this.color;
         ctx.beginPath();
-        ctx.arc(this.s.x, this.s.y, this.m/2, 0, 2 * Math.PI);
+        ctx.arc(this.s.x, this.s.y, this.m / 2, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
     }

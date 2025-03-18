@@ -90,7 +90,7 @@ if (typeof document !== "undefined") {
     document.addEventListener("wheel", (event: WheelEvent) => {
         physics.particles.forEach((particle) => {
             particle.v.y -= event.deltaY / particle.m;
-            particle.v.x -= event.deltaX / particle.m ;
+            particle.v.x -= event.deltaX / particle.m;
         });
     });
 }

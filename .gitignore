@@ -23,5 +23,8 @@ temp/
 *.DS_Store
 Thumbs.db
 
+# npm package lock
+package-lock.json
+
 # Prettier configuration
 .prettierrc
