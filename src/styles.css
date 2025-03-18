@@ -10,8 +10,8 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #000;
+    background-color: #ffffff;
 }
 canvas {
-    border: 0px solid black;
+    border: 1px solid black;
 }
