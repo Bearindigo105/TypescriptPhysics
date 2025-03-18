@@ -1,0 +1,17 @@
+#background,
+#foreground {
+    position: relative;
+}
+#background *,
+#foreground * {
+    position: absolute;
+}
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+canvas {
+    border: 0px solid black;
+}

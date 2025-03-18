@@ -40,20 +40,20 @@ export class Particle {
         yMin: number,
         yMax: number
     ) {
-        if (this.s.x < xMin) {
-            this.s.x = xMin;
+        if (this.s.x - this.m/2 < xMin) {
+            this.s.x = xMin + this.m/2;
             this.v.x *= -this.elasticity;
         }
-        if (this.s.x > xMax) {
-            this.s.x = xMax;
+        if (this.s.x + this.m/2 > xMax) {
+            this.s.x = xMax - this.m/2;
             this.v.x *= -this.elasticity;
         }
-        if (this.s.y < yMin) {
-            this.s.y = yMin;
+        if (this.s.y - this.m/2 < yMin) {
+            this.s.y = yMin + this.m/2;
             this.v.y *= -this.elasticity;
         }
-        if (this.s.y > yMax) {
-            this.s.y = yMax;
+        if (this.s.y + this.m/2 > yMax) {
+            this.s.y = yMax - this.m/2;
             this.v.y *= -this.elasticity;
         }
     }

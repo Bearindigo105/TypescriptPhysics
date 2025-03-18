@@ -22,4 +22,6 @@ temp/
 *.swp
 *.DS_Store
 Thumbs.db
+
+# Prettier configuration
 .prettierrc
