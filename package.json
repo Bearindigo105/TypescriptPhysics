@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "live-server --open=src/index.html"
-    
+    "start": "live-server --open=src/index.html",
+    "deploy": "npm run build && live-server --open=src/index.html"
   },
   "author": "",
   "license": "ISC",
