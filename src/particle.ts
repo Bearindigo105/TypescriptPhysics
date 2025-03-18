@@ -1,5 +1,5 @@
-import { Vector } from "./vector.js";
-import { Force } from "./force.js";
+import { IVectorJSON, Vector } from "./vector.js";
+import { Force, IForceJSON } from "./force.js";
 
 export class Particle {
     public s: Vector;
@@ -14,15 +14,13 @@ export class Particle {
         s = new Vector(),
         v = new Vector(),
         m = 1,
-        forces: Force[] = [],
         elasticity = 0.9,
-        color = "rgba(0, 0, 0, 1)"
+        color = "rgba(0, 0, 0, 1)",
     ) {
         this.s = s;
         this.v = v;
         this.a = new Vector();
         this.m = m;
-        this.forces = this.forces.concat(forces);
         this.elasticity = elasticity;
         this.color = color;
     }
@@ -38,7 +36,7 @@ export class Particle {
         xMin: number,
         xMax: number,
         yMin: number,
-        yMax: number
+        yMax: number,
     ) {
         if (this.s.x - this.m / 2 < xMin) {
             this.s.x = xMin + this.m / 2;
@@ -80,7 +78,7 @@ export class Particle {
 
             const relativeVelocity = new Vector(
                 this.v.x - p.v.x,
-                this.v.y - p.v.y
+                this.v.y - p.v.y,
             );
             const dotProduct = relativeVelocity.dot(new Vector(nx, ny));
             if (dotProduct > 0) return;
@@ -107,4 +105,23 @@ export class Particle {
         ctx.fill();
         ctx.closePath();
     }
+
+    static fromJSON(json: IParticleJSON): Particle {
+        return new Particle(
+            Vector.fromJSON(json.s),
+            Vector.fromJSON(json.v),
+            json.m,
+            json.elasticity,
+            json.color
+        );
+    }
+}
+
+export interface IParticleJSON {
+    s: IVectorJSON;
+    v: IVectorJSON;
+    a: IVectorJSON;
+    m: number;
+    elasticity: number;
+    color: string;
 }

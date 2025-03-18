@@ -1,4 +1,4 @@
-import { Vector } from "./vector.js";
+import { IVectorJSON, Vector } from "./vector.js";
 
 export class Force {
     public s: Vector;
@@ -6,4 +6,12 @@ export class Force {
     public constructor(s = new Vector()) {
         this.s = s;
     }
+
+    fromJSON(json: IForceJSON): Force {
+        return new Force(Vector.fromJSON(json.s));
+    }
+}
+
+export interface IForceJSON {
+    s: IVectorJSON;
 }

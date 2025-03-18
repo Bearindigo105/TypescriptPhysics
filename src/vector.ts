@@ -56,4 +56,13 @@ export class Vector {
         const angle = Math.atan2(this.y, this.x);
         return angle;
     }
+
+    static fromJSON(v: IVectorJSON): Vector {
+        return new Vector(v.x, v.y);
+    }
+}
+
+export interface IVectorJSON{
+    x: number;
+    y: number;
 }
