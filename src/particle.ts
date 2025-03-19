@@ -21,6 +21,7 @@ export class Particle {
         this.v = v;
         this.a = new Vector();
         this.m = m;
+        this.forces = [];
         this.elasticity = elasticity;
         this.color = color;
     }

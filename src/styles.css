@@ -68,6 +68,6 @@ input[type="file"] {
     color: #ffffff;
     text-align: left;
     position: absolute;
-    transform: translate(-500%, 100%);
+    transform: translate(450%, 100%);
     z-index: 10;
 }

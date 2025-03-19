@@ -4,17 +4,14 @@ import { Vector } from "./vector.js";
 
 export class Physics {
     public particles: Particle[] = [];
-    public gravforce: Force;
+    public gravconst: Vector;
 
     public constructor(
         particles: Particle[] = [],
-        gravforce: Force = new Force(new Vector(0, 2)),
+        gravconst: Vector = new Vector()
     ) {
         this.particles = this.particles.concat(particles);
-        this.gravforce = gravforce;
-        this.particles.forEach((particle) => {
-            particle.forces.push(this.gravforce);
-        });
+        this.gravconst = gravconst;
     }
 
     public update(canvas: HTMLCanvasElement) {
@@ -38,15 +35,15 @@ export class Physics {
 
     static fromJSON(json: IPhysicsJSON): Physics {
         const particles = json.particles.map((p) => Particle.fromJSON(p));
-        const gravforce = new Force(Vector.fromJSON(json.gravforce.s));
+        const gravconst = Vector.fromJSON(json.gravconst);
         particles.forEach((particle) => {
-            particle.forces.push(gravforce);
+            particle.forces.push(new Force(new Vector(gravconst.x * particle.m, gravconst.y * particle.m)));
         });
-        return new Physics(particles, gravforce);
+        return new Physics(particles, gravconst);
     }
 }
 
 export interface IPhysicsJSON {
     particles: Particle[];
-    gravforce: Force;
+    gravconst: Vector;
 }

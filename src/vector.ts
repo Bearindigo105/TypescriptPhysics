@@ -62,7 +62,7 @@ export class Vector {
     }
 }
 
-export interface IVectorJSON{
+export interface IVectorJSON {
     x: number;
     y: number;
 }

@@ -154,7 +154,7 @@
             "color": "rgba(150, 0, 150, 1)"
         }
     ],
-    "gravforce": {
+    "gravconst": {
         "s": {
             "x": 0,
             "y": 9.8
