@@ -1,7 +1,8 @@
 # TypescriptPhysics
 
 run the jawn using npm:
-SH SCRIPTS:
+
+SCRIPTS:
 build
 start
 deploy (build and start)
