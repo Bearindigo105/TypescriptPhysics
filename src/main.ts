@@ -39,8 +39,8 @@ if (typeof document !== "undefined") {
 
     document.addEventListener("wheel", (event: WheelEvent) => {
         physics.particles.forEach((particle) => {
-            particle.v.y -= event.deltaY / particle.m;
-            particle.v.x -= event.deltaX / particle.m;
+            particle.v.y -= Math.sqrt(Math.abs(event.deltaY * 20 / particle.m)) * Math.sign(event.deltaY);
+            particle.v.x -= Math.sqrt(Math.abs(event.deltaX * 10 / particle.m)) * Math.sign(event.deltaX);
         });
     });
 }

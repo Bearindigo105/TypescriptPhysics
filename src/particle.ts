@@ -1,6 +1,5 @@
 import { IVectorJSON, Vector } from "./vector.js";
 import { Force } from "./force.js";
-import { Constraint } from "./constraint.js";
 
 export class Particle {
     public s: Vector;
@@ -10,9 +9,6 @@ export class Particle {
     public forces: Force[] = [];
     public elasticity: number;
     public color: string;
-    public hasCollision: boolean;
-    public constraints: Constraint[] = [];
-    public dt: number;
 
     public constructor(
         s = new Vector(),
@@ -20,9 +16,6 @@ export class Particle {
         m = 1,
         elasticity = 0.9,
         color = "rgba(0, 0, 0, 1)",
-        constraints: Constraint[] = [],
-        hasCollision = true,
-        dt = 0.5,
     ) {
         this.s = s;
         this.v = v;
@@ -31,21 +24,12 @@ export class Particle {
         this.forces = [];
         this.elasticity = elasticity;
         this.color = color;
-        this.constraints = constraints;
-        this.hasCollision = hasCollision;
-        this.dt = dt;
     }
 
     public update() {
-        var new_s = this.s
-            .copy()
-            .add(this.v.copy().multiply(this.dt*this.dt*0.5))
-            .add(this.a.copy().multiply(this.dt));
-        var new_a = this.sumForces().multiply(1 / this.m);
-        var new_v = this.v.copy().add(this.a.add(new_a)).multiply(1);
-        this.s = new_s;
-        this.v = new_v;
-        this.a = new_a;
+        this.a = this.sumForces().multiply(1 / this.m);
+        this.v.add(this.a);
+        this.s.add(this.v);
     }
 
     public applyBoundary(
@@ -73,7 +57,6 @@ export class Particle {
     }
 
     public collision(p: Particle): boolean {
-        if (!this.hasCollision || !p.hasCollision) return false;
         const dx = this.s.x - p.s.x;
         const dy = this.s.y - p.s.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -130,8 +113,6 @@ export class Particle {
             json.m,
             json.elasticity,
             json.color,
-            json.constraints,
-            json.hasCollision,
         );
     }
 }
@@ -143,6 +124,4 @@ export interface IParticleJSON {
     m: number;
     elasticity: number;
     color: string;
-    constraints: Constraint[];
-    hasCollision: boolean;
 }

@@ -1,6 +1,5 @@
 import { Force } from "./force.js";
 import { IParticleJSON, Particle } from "./particle.js";
-import { IRopeJSON, Rope } from "./rope.js";
 import { Vector } from "./vector.js";
 
 export class Physics {
@@ -19,15 +18,13 @@ export class Physics {
         this.particles.forEach((particle) => {
             particle.update();
             particle.applyBoundary(0, canvas.width, 0, canvas.height);
-            for (var i = 0; i < this.particles.length/100; i++) {
-                this.particles.forEach((otherParticle) => {
-                    if (particle !== otherParticle) {
-                        if (particle.collision(otherParticle)) {
-                            particle.resolveCollision(otherParticle);
-                        }
+            this.particles.forEach((otherParticle) => {
+                if (particle !== otherParticle) {
+                    if (particle.collision(otherParticle)) {
+                        particle.resolveCollision(otherParticle);
                     }
-                });
-            }
+                }
+            });
         });
     }
 
@@ -38,9 +35,8 @@ export class Physics {
     }
 
     static fromJSON(json: IPhysicsJSON): Physics {
-        const particles = json.particles?.map((p) => Particle.fromJSON(p)) || [];
-        const ropes = json.ropes?.map((r) => Rope.fromJSON(r)) || [];
-        particles.push(...ropes.flatMap((rope) => rope.particles));
+        const particles =
+            json.particles?.map((p) => Particle.fromJSON(p)) || [];
         const gravconst = Vector.fromJSON(json.gravconst);
         particles.forEach((particle) => {
             particle.forces.push(
@@ -58,6 +54,5 @@ export class Physics {
 
 export interface IPhysicsJSON {
     particles: IParticleJSON[];
-    ropes: IRopeJSON[];
     gravconst: Vector;
 }
