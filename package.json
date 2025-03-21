@@ -9,7 +9,7 @@
     "start": "live-server --open=src/index.html",
     "deploy": "npm run build && live-server --open=src/index.html"
   },
-  "author": "",
+  "author": "Subhash Muthu",
   "license": "ISC",
   "devDependencies": {
     "live-server": "^1.2.0",

@@ -15,7 +15,8 @@
             },
             "m": 50,
             "elasticity": 0.9,
-            "color": "rgba(0, 0, 0, 1)"
+            "color": "rgba(0, 0, 0, 1)",
+            "hasCollision": true
         },
         {
             "s": {
@@ -32,7 +33,8 @@
             },
             "m": 50,
             "elasticity": 0.9,
-            "color": "rgba(255, 0, 0, 1)"
+            "color": "rgba(255, 0, 0, 1)",
+            "hasCollision": true
         },
         {
             "s": {
@@ -49,7 +51,8 @@
             },
             "m": 50,
             "elasticity": 0.9,
-            "color": "rgba(0, 255, 0, 1)"
+            "color": "rgba(0, 255, 0, 1)",
+            "hasCollision": true
         },
         {
             "s": {
@@ -66,7 +69,8 @@
             },
             "m": 50,
             "elasticity": 0.9,
-            "color": "rgba(255, 255, 0, 1)"
+            "color": "rgba(255, 255, 0, 1)",
+            "hasCollision": true
         },
         {
             "s": {
@@ -83,7 +87,8 @@
             },
             "m": 50,
             "elasticity": 0.9,
-            "color": "rgba(255, 0, 255, 1)"
+            "color": "rgba(255, 0, 255, 1)",
+            "hasCollision": true
         },
         {
             "s": {
@@ -100,7 +105,8 @@
             },
             "m": 50,
             "elasticity": 0.9,
-            "color": "rgba(0, 255, 255, 1)"
+            "color": "rgba(0, 255, 255, 1)",
+            "hasCollision": true
         },
         {
             "s": {
@@ -117,7 +123,8 @@
             },
             "m": 50,
             "elasticity": 0.9,
-            "color": "rgba(150, 150, 0, 1)"
+            "color": "rgba(150, 150, 0, 1)",
+            "hasCollision": true
         },
         {
             "s": {
@@ -134,7 +141,8 @@
             },
             "m": 50,
             "elasticity": 0.9,
-            "color": "rgba(0, 150, 150, 1)"
+            "color": "rgba(0, 150, 150, 1)",
+            "hasCollision": true
         },
         {
             "s": {
@@ -150,12 +158,13 @@
                 "y": 0
             },
             "m": 50,
-            "elasticity": 0.9,
-            "color": "rgba(150, 0, 150, 1)"
+            "elasticity": 0.99,
+            "color": "rgba(150, 0, 150, 1)",
+            "hasCollision": true
         }
     ],
     "gravconst": {
         "x": 0,
-        "y": 0.98
+        "y": 9.8
     }
 }

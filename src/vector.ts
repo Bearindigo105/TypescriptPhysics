@@ -57,6 +57,10 @@ export class Vector {
         return angle;
     }
 
+    copy() {
+        return new Vector(this.x, this.y)
+    }
+
     static fromJSON(v: IVectorJSON): Vector {
         return new Vector(v.x, v.y);
     }
